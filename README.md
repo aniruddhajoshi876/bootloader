@@ -66,7 +66,7 @@ bootloader/
 | Bootloader         | `0x08000000`  | This project. Reset vector lands here.               |
 | **Application**    | `0x08008000`  | Your app must be linked to start here (`APP_START`). |
 | Flash end          | `0x08080000`  | 512 KB total.                                        |
-| **Boot flag**      | `0x2001BFFC`  | Last 4 bytes of RAM, no-init. Magic `0xDEADBEEF`.   |
+| **Boot flag**      | `0x2001BFFC`  | Last 4 bytes of RAM, no-init. Magic `0xDEADBEEF`.    |
 | RAM staging buffer | (bootloader)  | Max firmware image size **64 KB** (`FW_RAM_MAX`).    |
 
 - Flash page size: **2 KB**. The bootloader erases from `APP_START` to the end of flash before writing.
@@ -145,7 +145,7 @@ The script handles the full handshake with ACK checking at each step:
 **Configuration** — in order of precedence:
 
 1. CLI argument: `python send_u_debug.py path/to/app.bin`
-2. `.env` file in the same directory (key `BIN=...`) — see `.env.example`
+2. `.env` file in the same directory (`BIN=...`, optional `PORT=...`) — see `.env.example`
 
 **Hardcoded defaults** you may want to change in the script:
 
@@ -238,7 +238,7 @@ must be flashed once; afterwards application updates go over UART.
 | magic        | `0xDEADBEEF`  | Value that triggers update mode   |
 | trigger byte | `'U'` (0x55)  | Serial command to enter update    |
 | `FW_RAM_MAX` | `0x10000`     | Max image size per update (64 KB) |
-| baud         | `115200`      | USART1, 8N1, PC4/PC5             |
+| baud         | `115200`      | USART1, 8N1, PC4/PC5              |
 
 ---
 
