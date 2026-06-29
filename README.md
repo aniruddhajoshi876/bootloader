@@ -213,7 +213,7 @@ NOINIT (xrw) : ORIGIN = 0x2001BFFC, LENGTH = 4
 After `reboot_to_bootloader()` runs, the device resets into the bootloader,
 which finds `0xDEADBEEF`, clears it, and waits for the 4-byte size + image as
 described in the protocol above (no `'U'` byte needed in this path).
-
+*the boot_flag reserving 4 bytes in memoery is optional. The app should just do a warm reset after receiving 'U' through UART
 ---
 
 ## Building and flashing the bootloader
